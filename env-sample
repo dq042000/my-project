@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# See https://docs.docker.com/compose/environment-variables/#the-env-file
+
+# Nginx
+NGINX_HOST=school.cloudschool
+
+# MySQL
+MYSQL_HOST=cloudschool_mysql
+MYSQL_DATABASE=test
+MYSQL_ROOT_USER=root
+MYSQL_ROOT_PASSWORD=root123
+MYSQL_USER=root
+MYSQL_PASSWORD=root123
+
+# Master-Slave
+REPLICATION_PASSWORD=rep_user
+
+MONGO_URL=mongodb://mongodb:27017
+MONGO_INITDB_ROOT_USERNAME=admin
+MONGO_INITDB_ROOT_PASSWORD=admin123
+MONGO_INITDB_DATABASE=mylaravel
+MONGO_INITDB_USERNAME=dq042000
+MONGO_INITDB_PASSWORD=dq042000
+MONGO_REPLICA_SET_NAME=rs0

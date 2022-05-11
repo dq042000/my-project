@@ -1,0 +1,12 @@
+# Global
+.env
+docker-compose.yml
+DB
+
+# Application
+web/composer.lock
+
+# VSCode
+.vscode
+.history
+

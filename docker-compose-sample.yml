@@ -1,0 +1,73 @@
+version: '3.3'
+
+services:
+  memcached:
+    image: memcached
+    ports:
+      - '11211'
+  php:
+    image: dq042000/php-fpm-7.3.27
+    volumes:
+      - ./web:/var/app
+      - '.docker/php/php.ini:/etc/php/7.3/fpm/php.ini'
+    environment:
+      TZ: Asia/Taipei
+    ports:
+      - '9000'
+
+  nginx:
+    build: .docker/nginx/
+    depends_on:
+      - php
+    ports:
+      - '9810:80'
+    links:
+      - php
+    volumes:
+      - ./web:/var/app
+
+  mysqldb:
+    image: mariadb
+    restart: always
+    env_file:
+      - '.env'
+    environment:
+      - MARIADB_USER=${MYSQL_USER}
+      - MARIADB_ROOT_USER=${MYSQL_USER}
+      - MARIADB_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MAX_CONNECTIONS=1024
+    ports:
+      - '3306'
+    volumes:
+      - './DB/mysql:/var/lib/mysql'
+      - '.docker/mysql/conf:/etc/mysql/conf.d'
+    command: mysqld --sql_mode="" --innodb-large-prefix=on --innodb-file-format=barracuda --innodb-file-per-table=on
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '9811:80'
+    volumes:
+      - .docker/php/upload.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysqldb
+      - UPLOAD_LIMIT= 300000000
+    depends_on:
+      - mysqldb
+
+  mongodb:
+    image: library/mongo
+    volumes:
+      - ./DB/mongodb:/data/db
+      - ./DB/backup:/backup
+    command: mongod --auth
+    ports:
+      - '27017:27017'
+    privileged: true
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      TZ: Asia/Taipei
