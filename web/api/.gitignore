@@ -1,0 +1,15 @@
+.vagrant/
+vendor/
+config/development.config.php
+data/cache/*
+data/temp/*
+data/DoctrineMongoODMModule/Hydrator/*
+data/DoctrineMongoODMModule/PersistentCollection/*
+data/DoctrineMongoODMModule/Proxy/*
+!data/temp/.gitkeep
+!data/cache/.gitkeep
+!data/DoctrineMongoODMModule/Hydrator/.gitkeep
+!data/DoctrineMongoODMModule/PersistentCollection/.gitkeep
+!data/DoctrineMongoODMModule/Proxy/.gitkeep
+phpunit.xml
+.phpunit.result.cache
