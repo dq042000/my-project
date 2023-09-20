@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'db' => [
+        'driver'        => 'Pdo',
+        'dsn'           => 'mysql:dbname=my_project;host=mysqldb',
+        'username'      => 'root',
+        'password'      => 'X.a[25zutRBaoYZm',
+    ],
+];
