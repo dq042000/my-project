@@ -1,14 +1,6 @@
 version: '3.3'
 
 services:
-  memcached:
-    image: memcached
-    restart: always
-    ports:
-      - '11211'
-    networks:
-      - network
-
   php:
     build: 
       context: .docker/php-fpm
@@ -77,51 +69,6 @@ services:
       UPLOAD_LIMIT:  300000000
     depends_on:
       - mysqldb
-    networks:
-      - network
-
-  mysqlbackup:
-    image: selim13/automysqlbackup
-    volumes:
-      - "./DB/backup:/backup"
-    environment:
-      USERNAME: ${MYSQL_ROOT_USER}
-      PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      DBHOST: ${MYSQL_HOST}
-      DBNAMES: ${MYSQL_DATABASE}
-      DBEXCLUDE: "performance_schema information_schema"
-      CRON_SCHEDULE: "0 0 * * *"
-      EXTRA_OPTS: "--single-transaction"
-      TZ: Asia/Taipei
-    depends_on:
-      - mysqldb
-    networks:
-      - network
-
-  redis:
-    image: redis
-    command: redis-server --requirepass ${REDIS_PASSWORD}
-    ports:
-      - '6379'
-    volumes:
-      - ./DB/radis:/data
-    networks:
-      - network
-
-  mongodb:
-    image: library/mongo
-    ports:
-      - ${MONGODB_PORT}:27017
-    volumes:
-      - ./DB/mongodb:/data/db
-      - ./DB/backup:/backup
-    command: mongod --auth
-    privileged: true
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-      TZ: Asia/Taipei
     networks:
       - network
 

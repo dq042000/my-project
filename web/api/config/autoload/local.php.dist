@@ -13,26 +13,4 @@
  */
 
 return [
-    'phpSettings' => [
-        'session.save_handler' => 'redis',
-        'session.save_path' => 'tcp://redis:6379?auth=設定密碼',
-        'session.cookie_httponly' => true,
-        'max_execution_time' => 60,
-        'date.timezone' => 'Asia/Taipei',
-        'memory_limit' => '256M',
-        'session.gc_maxlifetime' => 60 * 60,   // 控制 session 有效期 (單位:秒), 預設1小時
-    ],
-    'session_config' => [
-        'remember_me_seconds' => 60 * 60,   // 指定在清除數據之前記住會話的時間 (單位:秒), 預設1小時
-        'name' => 'cc_session',
-    ],
-    'session_manager' => [
-        'validators' => [
-            \Laminas\Session\Validator\RemoteAddr::class,
-            // \Laminas\Session\Validator\HttpUserAgent::class,
-        ],
-    ],
-    'session_storage' => [
-        'type' => \Laminas\Session\Storage\SessionArrayStorage::class,
-    ],
 ];

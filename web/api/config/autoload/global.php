@@ -13,5 +13,5 @@
  */
 
 return [
-    'current_title' => '',
+    // ...
 ];
