@@ -2,8 +2,8 @@
 namespace Blog\Controller;
 
 use Blog\Form\PostForm;
-use Blog\Model\Post;
 use Blog\Model\PostCommandInterface;
+use Blog\Model\PostRepositoryInterface;
 use InvalidArgumentException;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
@@ -29,7 +29,7 @@ class WriteController extends AbstractActionController
      * @param PostCommandInterface $command
      * @param PostForm $form
      */
-    public function __construct(PostCommandInterface $command, PostForm $form)
+    public function __construct(PostCommandInterface $command, PostForm $form, PostRepositoryInterface $repository)
     {
         $this->command = $command;
         $this->form = $form;
@@ -41,13 +41,13 @@ class WriteController extends AbstractActionController
         $request = $this->getRequest();
         $viewModel = new ViewModel(['form' => $this->form]);
 
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return $viewModel;
         }
 
         $this->form->setData($request->getPost());
 
-        if (! $this->form->isValid()) {
+        if (!$this->form->isValid()) {
             return $viewModel;
         }
 
@@ -68,7 +68,7 @@ class WriteController extends AbstractActionController
     public function editAction()
     {
         $id = $this->params()->fromRoute('id');
-        if (! $id) {
+        if (!$id) {
             return $this->redirect()->toRoute('blog');
         }
 
@@ -82,13 +82,13 @@ class WriteController extends AbstractActionController
         $viewModel = new ViewModel(['form' => $this->form]);
 
         $request = $this->getRequest();
-        if (! $request->isPost()) {
+        if (!$request->isPost()) {
             return $viewModel;
         }
 
         $this->form->setData($request->getPost());
 
-        if (! $this->form->isValid()) {
+        if (!$this->form->isValid()) {
             return $viewModel;
         }
 
