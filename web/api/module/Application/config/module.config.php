@@ -6,7 +6,7 @@ namespace Application;
 
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
-use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory;
 
 return [
     'router' => [
@@ -35,7 +35,12 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => ConfigAbstractFactory::class,
+        ],
+    ],
+    ConfigAbstractFactory::class => [
+        Controller\IndexController::class => [
+            'default-cache',
         ],
     ],
     'view_manager' => [
