@@ -47,9 +47,7 @@ Init() {
 DefaultSetting() {
     # Copy php config files
     cp web/${PHP_DIRECTORY}/config/autoload/local.php.dist web/${PHP_DIRECTORY}/config/autoload/local.php
-    cp web/${PHP_DIRECTORY}/config/autoload/doctrine.local.php.dist web/${PHP_DIRECTORY}/config/autoload/doctrine.local.php
-    cp web/${PHP_DIRECTORY}/config/autoload/module.doctrine-mongo-odm.local.php.dist web/${PHP_DIRECTORY}/config/autoload/module.doctrine-mongo-odm.local.php
-    cp web/${PHP_DIRECTORY}/config/autoload/memcached.local.php.dist web/${PHP_DIRECTORY}/config/autoload/memcached.local.php
+    cp web/${PHP_DIRECTORY}/config/autoload/paginator.global.php.dist web/${PHP_DIRECTORY}/config/autoload/paginator.global.php
     echo "$COLOR_BACKGROUND_YELLOW 複製 專案 Config 檔案... 成功 $COLOR_REST"
 
     # Start container
@@ -105,7 +103,7 @@ MainMenu() {
     # 啟動開發環境
     elif [ $user_select = 2 ]; then
         # Run default setting
-        # DefaultSetting
+        DefaultSetting
 
         # Update php packages
         docker exec -it ${containerNamePrefix}_php_1 composer update && echo "$COLOR_BACKGROUND_GREEN 更新 php 相關套件... 成功 $COLOR_REST"
@@ -121,7 +119,7 @@ MainMenu() {
     # 模擬啟動正式環境
     elif [ $user_select = 3 ]; then
         # Run default setting
-        # DefaultSetting
+        DefaultSetting
 
         # Update php packages
         docker exec -it ${containerNamePrefix}_php_1 composer update && echo "$COLOR_BACKGROUND_GREEN 更新 php 相關套件... 成功 $COLOR_REST"
