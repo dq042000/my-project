@@ -83,6 +83,28 @@ return [
                     ],
                 ],
             ],
+            [
+                'label' => 'Blog',
+                'route' => 'blog',
+                'class' => 'nav-link',
+                'pages' => [
+                    [
+                        'label' => 'Add',
+                        'route' => 'blog',
+                        'action' => 'add',
+                    ],
+                    [
+                        'label' => 'Edit',
+                        'route' => 'blog',
+                        'action' => 'edit',
+                    ],
+                    [
+                        'label' => 'Delete',
+                        'route' => 'blog',
+                        'action' => 'delete',
+                    ],
+                ],
+            ],
         ],
     ],
 ];
