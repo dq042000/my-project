@@ -202,6 +202,22 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm /var/log/lastlog /var/log/faillog
 
+###########################################################################
+# APCU:
+###########################################################################
+
+ARG INSTALL_APCU=false
+
+RUN if [ ${INSTALL_APCU} = true ]; then \
+    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
+        pecl install -a apcu-4.0.11; \
+    else \
+        pecl install apcu; \
+    fi && \
+    docker-php-ext-enable apcu \
+;fi
+
+# Configure locale.
 WORKDIR /var/app
 EXPOSE 9000
 CMD ["php-fpm"]

@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Service\Factory;
+namespace Base\Factory;
 
 use Laminas\Cache\Service\StorageAdapterFactoryInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
@@ -18,14 +18,14 @@ class CacheApcFactory implements FactoryInterface
     {
         /** @var StorageAdapterFactoryInterface $storageFactory */
         $storageFactory = $container->get(StorageAdapterFactoryInterface::class);
-        return  $storageFactory->create(
+        return $storageFactory->create(
             'apcu',
             ['ttl' => 3600],
             [
                 [
                     'name' => 'exception_handler',
                     'options' => [
-                        'throw_exceptions' => false
+                        'throw_exceptions' => false,
                     ],
                 ],
             ]

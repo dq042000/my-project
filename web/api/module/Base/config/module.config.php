@@ -2,6 +2,8 @@
 
 namespace Base;
 
+use Laminas\Router\Http\Literal;
+
 return [
     'service_manager' => [
         'aliases' => [
