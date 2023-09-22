@@ -8,6 +8,9 @@ use Laminas\View\Model\ViewModel;
 
 class ListController extends AbstractActionController
 {
+    /**
+     * @var PostRepositoryInterface
+     */
     private $postRepository;
 
     public function __construct(PostRepositoryInterface $postRepository)

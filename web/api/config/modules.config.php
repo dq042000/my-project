@@ -29,6 +29,7 @@ return [
     'Laminas\DeveloperTools',
     'Laminas\Diactoros',
     'Laminas\Cache\Storage\Adapter\Filesystem',
+    'Base',
     'Application',
     'Album',
     'Blog',

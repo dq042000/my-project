@@ -32,6 +32,9 @@ class PostRepository implements PostRepositoryInterface
         ],
     ];
 
+    /**
+     * {@inheritDoc}
+     */
     public function findAllPosts()
     {
         return array_map(function ($post) {
@@ -43,6 +46,9 @@ class PostRepository implements PostRepositoryInterface
         }, $this->data);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function findPost($id)
     {
         if (! isset($this->data[$id])) {

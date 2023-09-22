@@ -26,12 +26,27 @@ return [
             Controller\DeleteController::class => Factory\DeleteControllerFactory::class,
         ],
     ],
+    // This lines opens the configuration for the RouteManager
+    // 這行代碼開啟了路由管理器(RouteManager)的配置
     'router' => [
+        // Open configuration for all possible routes
+        // 開啟所有可能路由(routes)的配置
         'routes' => [
+            // Define a new route called "blog"
+            // 定義一個名為 'blog' 的新路由(route)
             'blog' => [
+                // Define a "literal" route type
+                // 定義一個 'Literal' 路由(route)類型
                 'type' => Literal::class,
+                // Configure the route itself
+                // 配置路由(route)本身
                 'options' => [
+                    // Listen to "/blog" as uri:
+                    // 監聽 '/blog' 作為 uri:
                     'route' => '/blog',
+                    // Define default controller and action to be called when
+                    // this route is matched
+                    // 當此路由匹配時，請定義要調用的默認控制器和動作
                     'defaults' => [
                         'controller' => Controller\ListController::class,
                         'action' => 'index',
