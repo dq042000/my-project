@@ -19,7 +19,7 @@ class CacheApcFactory implements FactoryInterface
         /** @var StorageAdapterFactoryInterface $storageFactory */
         $storageFactory = $container->get(StorageAdapterFactoryInterface::class);
         return $storageFactory->create(
-            'apcu',
+            'redis',
             ['ttl' => 3600],
             [
                 [

@@ -6,6 +6,7 @@
 NGINX_PORT=9810
 PHPMYADMIN_PORT=9811
 MONGODB_PORT=9812
+REDIS_PORT=9813
 
 ### DEFAULT ###########################################
 PHP_DIRECTORY=api
@@ -25,7 +26,8 @@ PHP_FPM_INSTALL_PHPREDIS=true
 PHP_FPM_INSTALL_IMAGEMAGICK=true
 PHP_FPM_INSTALL_MEMCACHED=true
 PHP_FPM_INSTALL_XSL=true
-PHP_FPM_INSTALL_APCU=true
+PHP_FPM_INSTALL_APCU=false
+PHP_WORKER_INSTALL_REDIS=true
 
 ### NGINX #################################################
 NGINX_HOST_LOG_PATH=./.docker/logs/nginx/
@@ -35,3 +37,6 @@ MYSQL_HOST=mysqldb
 MYSQL_DATABASE=my_project
 MYSQL_ROOT_USER=root
 MYSQL_ROOT_PASSWORD=設定密碼
+
+### REDIS #################################################
+REDIS_PASSWORD=設定密碼

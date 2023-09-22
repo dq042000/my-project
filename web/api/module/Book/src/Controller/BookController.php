@@ -6,6 +6,7 @@ use Base\Controller\BaseController;
 
 class BookController extends BaseController 
 {
+    // 給要暫存的資料一個名稱
     const ACL_CACHE_KEY = 'acl_service_cache_key';
 
     public function indexAction()
