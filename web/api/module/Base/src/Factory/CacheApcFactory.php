@@ -9,6 +9,7 @@ use Psr\Container\ContainerInterface;
 class CacheApcFactory implements FactoryInterface
 {
     /**
+     * 取得以 redis 為介面的快取物件
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
